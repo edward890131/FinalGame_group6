@@ -4,7 +4,7 @@ PImage T_normal, T_Introduce, Teacher_hold, Teacher_Introduce, Teacher_normal, T
   Turtle_normal, bg, retry_hold, retry_normal, error, start_hold, start_normal;
 PImage Dog_choose, Turtle_choose, Le_choose, Teacher_choose, T_choose, She_choose, isHe_hold, isHe_normal, part2;
 
-final int GAME_RUN = 0, GAME_CHOOSE = 1, GAME_WIN = 2, GAME_OVER = 3;
+final int PART1_1_GAME_RUN = 0, PART1_1_GAME_CHOOSE = 1, PART1_1_GAME_WIN = 2, PART1_1_GAME_OVER = 3;
 int gameState = 0;
 
 boolean TurtleMousePressed = false;
@@ -52,7 +52,7 @@ void setup() {
 void draw() {
 
   switch (gameState) {
-  case GAME_RUN:
+  case PART1_1_GAME_RUN:
     image(bg, 0, 0);
 
     //turtle
@@ -140,7 +140,7 @@ void draw() {
       && 700 < mouseY) {
       image(start_hold, 1180, 700);
       if (mousePressed) {
-        gameState = GAME_CHOOSE;
+        gameState = PART1_1_GAME_CHOOSE;
         mousePressed = false;
       }
     } else {
@@ -169,7 +169,7 @@ void draw() {
     }
     break;
 
-  case GAME_CHOOSE:
+  case PART1_1_GAME_CHOOSE:
     image(bg, 0, 0);
 
     //turtle
@@ -292,7 +292,7 @@ void draw() {
         && ToyzMousePressed == false && TeacherMousePressed == false
         && LeMousePressed == false && SheMousePressed == false
         ) {
-        gameState = GAME_WIN;
+        gameState = PART1_1_GAME_WIN;
         mousePressed = false;
       }
     } else {
@@ -300,7 +300,7 @@ void draw() {
     }
     break;
 
-  case GAME_WIN:
+  case PART1_1_GAME_WIN:
     image(part2, 0, 0);
     break;
   }
