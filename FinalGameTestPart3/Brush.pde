@@ -1,7 +1,6 @@
 //change color
 
 class Brush extends Tool{
-  
   float w = 70;
   float h = 74;
   
@@ -15,6 +14,15 @@ class Brush extends Tool{
     }
   }
   
+  void slowdown(){
+    
+  }
+  
   void click() {
+    if (isAlive && isMouseHit(x, y, w, h) && mousePressed) {
+      println("brush pressed");
+      isAlive = false;
+      println(isAlive);
+    }
   }
 }

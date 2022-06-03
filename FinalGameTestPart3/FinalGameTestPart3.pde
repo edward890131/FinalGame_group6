@@ -1,19 +1,21 @@
 
-PImage part3Bg, life, title_3;
-PImage toolbar, magnifierImg, brushImg, clockImg;
+PImage part3Bg, life, title_3, partFail, restartBtnNormal, restartBtnHover, gameWin;
+PImage toolbar, magnifierImg, brushImg, clockImg, freezeImg;
 PImage [] strawImg = new PImage[6];
 PImage [] ask = new PImage[6];
 PFont font;
 
-final int GAME_PART3_RED = 0, GAME_PART3_YELLOW = 1,
-  GAME_PART3_GREEN = 2, GAME_PART3_BLUE = 3,
-  GAME_PART3_PURPLE = 4, GAME_PART3_GREY = 5;
+final int GAME_PART3_RUN = 0, GAME_PART3_OVER = 1, GAME_PART3_WIN = 2;
 int part3_gameState = 0;
 
-final int GAME_INIT_TIMER = 7200;
+final int GAME_INIT_TIMER = 3600;
 int gameTimer = GAME_INIT_TIMER;
 final float CLOCK_BONUS_SECONDS = 15f;
 
+final float RESTART_BUTTON_X = 500;
+final float RESTART_BUTTON_Y = 440;
+final float RESTART_BUTTON_WIDTH = 253;
+final float RESTART_BUTTON_HEIGHT = 88;
 final float ASK_X = 1070;
 final float ASK_Y = 550;
 
@@ -36,6 +38,7 @@ int cupNum = 0;
 
 Clock clock;
 Magnifier magnifier;
+Freeze freeze;
 Brush brush;
 
 void setup() {
@@ -47,18 +50,24 @@ void setup() {
   part3Bg = loadImage("img/part3Background.png");
   life = loadImage("img/life.png");
   title_3 = loadImage("img/title_3.png");
+  partFail = loadImage("img/partFail.png");
+  restartBtnNormal = loadImage("img/restartBtnNormal.png");
+  restartBtnHover = loadImage("img/restartBtnHover.png");
+  gameWin = loadImage("img/gameWin.png");
+
   toolbar = loadImage("img/part3Tool/toolbar.png");
   magnifierImg = loadImage("img/part3Tool/magnifier.png");
   brushImg = loadImage("img/part3Tool/brush.png");
   clockImg = loadImage("img/part3Tool/clock.png");
+  freezeImg = loadImage("img/part3Tool/freeze.png");
   for (int i=0; i<strawImg.length; i++) {
     strawImg[i] = loadImage("img/part3Straws/straw" + i +".png");
   }
   for (int i=0; i<ask.length; i++) {
     ask[i] = loadImage("img/part3Ask/ask" + i +".png");
   }
-  
-  font = createFont("font/font.ttf", 72);
+
+  font = createFont("font/font.ttf", 100);
   textFont(font);
 
   initGamePart3();
@@ -76,100 +85,98 @@ void initGamePart3() {
       straws[i][j] = new Straw(i);
     }
   }
-  
+
+  //set tools
+  clock = new Clock(1115, 215);
+  magnifier = new Magnifier(1215, 220);
+  freeze = new Freeze(1315, 220);
+
   gameTimer = GAME_INIT_TIMER;
 }
 
 
 void draw() {
-  //part3 state
-  /*
-  play: red > yellow > green > blue > purple > grey / again
-   */
+  background(255, 255, 255);
+  image(part3Bg, 0, 0);
+  image(title_3, 37.5, 37.5);
+  image(title_3, 37.5, 37.5);
+  image(toolbar, TOOL_BAR_X, TOOL_BAR_Y);
+
   switch(part3_gameState) {
 
-    case GAME_PART3_RED:
+  case GAME_PART3_RUN:
+
+    //cup & ask
+    if (collectCount < STRAW_NUM * 1) {  //red
+      cupNum = 0;
       image(ask[0], ASK_X, ASK_Y);
-      if (collectCount == STRAW_NUM*1) {
-        cupNum++;
-        part3_gameState = GAME_PART3_YELLOW;
-      }
-  
-      break;
-  
-    case GAME_PART3_YELLOW:
+      clock.isAlive = false;
+      magnifier.isAlive = false;
+      freeze.isAlive = false;
+    } else if (collectCount < STRAW_NUM * 2) {  //yellow
+      cupNum = 1;
       image(ask[1], ASK_X, ASK_Y);
-      
-      clock = new Clock(1115,215);
-      clock.display();
-      
-      if (collectCount == STRAW_NUM*2) {
-        cupNum++;
-        part3_gameState = GAME_PART3_GREEN;
-      }
-      break;
-  
-    case GAME_PART3_GREEN:
+      clock.isAlive = clock.isClick ? false : true;
+      magnifier.isAlive = false;
+      freeze.isAlive = false;
+    } else if (collectCount < STRAW_NUM * 3) { //green
+      cupNum = 2;
       image(ask[2], ASK_X, ASK_Y);
-      
-      magnifier = new Magnifier(1215,220);
-      magnifier.display();
-      
-      if (collectCount == STRAW_NUM*3) {
-        cupNum++;
-        part3_gameState = GAME_PART3_BLUE;
-      }
-      break;
-  
-    case GAME_PART3_BLUE:
+      clock.isAlive = clock.isClick ? false : true;
+      magnifier.isAlive = magnifier.isClick ? false : true;
+      freeze.isAlive = false;
+    } else if (collectCount < STRAW_NUM * 4) { //blue
+      cupNum = 3;
       image(ask[3], ASK_X, ASK_Y);
-      
-      brush = new Brush(1315,220);
-      brush.display();
-      
-      if (collectCount == STRAW_NUM*4) {
-        cupNum++;
-        part3_gameState = GAME_PART3_PURPLE;
-      }
-      break;
-  
-    case GAME_PART3_PURPLE:
+      clock.isAlive = clock.isClick ? false : true;
+      magnifier.isAlive = magnifier.isClick ? false : true;
+      freeze.isAlive = freeze.isClick ? false : true;
+    } else if (collectCount < STRAW_NUM * 5) { //purple
+      cupNum = 4;
       image(ask[4], ASK_X, ASK_Y);
-      if (collectCount == STRAW_NUM*5) {
-        cupNum++;
-        part3_gameState = GAME_PART3_GREY;
-      }
-      break;
-  
-    case GAME_PART3_GREY:
+      clock.isAlive = clock.isClick ? false : true;
+      magnifier.isAlive = magnifier.isClick ? false : true;
+      freeze.isAlive = freeze.isClick ? false : true;
+    } else if (collectCount < STRAW_NUM * 6) { //grey
+      cupNum = 5;
       image(ask[5], ASK_X, ASK_Y);
-      if (collectCount == STRAW_NUM*6) {
-        cupNum++;
-        //part3_gameState = GAME_PART3_GREY;
-      }
-      break;
-  }
-
-  //straw
-  for (int i=0; i<COLOR_NUM; i++) {
-    for (int j=0; j<STRAW_NUM; j++) {
-      straws[i][j].update();
-      straws[i][j].display();
-      straws[i][j].click();
+      clock.isAlive = clock.isClick ? false : true;
+      magnifier.isAlive = magnifier.isClick ? false : true;
+      freeze.isAlive = freeze.isClick ? false : true;
+    } else if (collectCount == STRAW_NUM * 6) { //win
+      cupNum = 6;
+      part3_gameState = GAME_PART3_WIN;
     }
-  }
 
-  // Health UI
-  for (int i = 0; i < playerHealth; i++) {
-    image(life, 1095 + i * 113, 37.5);
-  }
-  
-  //cup number
-  fill(109, 87, 72);
-  textSize(72);
-  text(cupNum, 250, 550);
-  
-  // Time UI
+    //tools
+    clock.display();
+    clock.click();
+    magnifier.display();
+    magnifier.click();
+    freeze.display();
+    freeze.click();
+
+
+    //straw
+    for (int i=0; i<COLOR_NUM; i++) {
+      for (int j=0; j<STRAW_NUM; j++) {
+        straws[i][j].update();
+        straws[i][j].display();
+        straws[i][j].click();
+      }
+    }
+
+    // Health UI
+    for (int i = 0; i < playerHealth; i++) {
+      image(life, 1095 + i * 113, 37.5);
+    }
+
+    //cup number
+    fill(109, 87, 72);
+    textSize(100);
+    text(cupNum, 250, 570);
+
+    // Time UI
     textAlign(LEFT, BOTTOM);
     String timeString = convertFrameToTimeString(gameTimer);
     textSize(44);
@@ -178,7 +185,31 @@ void draw() {
     fill(getTimeTextColor(gameTimer));
     text(timeString, 170, 698);
     gameTimer --;
-    
+
+    if (gameTimer==0) {
+      part3_gameState = GAME_PART3_OVER;
+    }
+
+    break;
+
+  case GAME_PART3_OVER:
+    image(partFail, 0, 0);
+    if (isMouseHit(RESTART_BUTTON_X, RESTART_BUTTON_Y, RESTART_BUTTON_WIDTH, RESTART_BUTTON_HEIGHT)) {
+      image(restartBtnHover, 500, 440);
+      if (mousePressed) {
+        part3_gameState = GAME_PART3_RUN;
+        mousePressed = false;
+        initGamePart3();
+      }
+    } else {
+      image(restartBtnNormal, 500, 440);
+    }
+    break;
+
+  case GAME_PART3_WIN:
+    image(gameWin, 0, 0);
+    break;
+  }
 }
 
 
@@ -189,25 +220,24 @@ boolean isMouseHit(float bx, float by, float bw, float bh) {
     mouseY < by + bh;
 }
 
-void addTime(float seconds){
+void addTime(float seconds) {
   gameTimer += round(seconds * 60);
 }
 
-color getTimeTextColor(int frames){
-  if(frames >= 7200){
+color getTimeTextColor(int frames) {
+  if (frames >= 3600) {
     return #00ffff;
-  }else if(frames >= 3600){
-    return #ffffff;
-  }else if(frames >= 1800){
+  } else if (frames >= 2400) {
+    return #7C675A;
+  } else if (frames >= 1200) {
     return #ffcc00;
-  }else if(frames >= 600){
+  } else if (frames >= 600) {
     return #ff6600;
   }
-
   return #ff0000;
 }
 
-String convertFrameToTimeString(int frames){
+String convertFrameToTimeString(int frames) {
   String result = "";
   float totalSeconds = float(frames) / 60;
   result += nf(floor(totalSeconds/60), 2);

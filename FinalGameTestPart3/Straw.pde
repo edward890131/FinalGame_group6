@@ -12,6 +12,7 @@ class Straw {
   int rotateRadians = floor(random(360));
   float w = 80;
   float h = 80;
+  float scale = 1;
 
 
   Straw(int colorNum) {
@@ -22,8 +23,8 @@ class Straw {
     speedX = floor(random(-5, 5));
     speedY = floor(random(-5, 5));
     while (abs(speedX)<1 || abs(speedY)<1) {
-      speedX = floor(random(-3, 3));
-      speedY = floor(random(-3, 3));
+      speedX = floor(random(-5, 5));
+      speedY = floor(random(-5, 5));
     }
   }
 
@@ -34,6 +35,9 @@ class Straw {
       translate(x+w/2, y+h/2);
       rotate(radians(rotateRadians));
       imageMode(CENTER);
+      if(scale == 2){
+        scale(2);
+      }
       image(strawImg[colorNum], 0, 0);
       popStyle();
       popMatrix();
@@ -52,10 +56,13 @@ class Straw {
     }
   }
 
+  void slow() {
+  }
+
   void click() {
 
-    if (isAlive && isMouseHit(x, y, w, h) && mousePressed && colorNum==part3_gameState) {
-      collectCount++; 
+    if (isAlive && isMouseHit(x, y, w, h) && mousePressed && colorNum==cupNum) {
+      collectCount++;
       println(collectCount, cupNum);
       isAlive = false;
     }
