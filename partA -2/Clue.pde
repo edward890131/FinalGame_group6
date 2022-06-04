@@ -4,15 +4,13 @@ class Key {
   boolean isAlive;
   boolean framecheck;
   int keyCount;
+  
+  
   boolean checkCollision(Player player) {
-
-    if (keyCount==0&&isHit(x, y, w, h, player.x, player.y, player.w, player.h)) {
-      keyCount++;
-      return true;
-    } else if (keyCount!=0&&isHit(x, y, w, h, player.x, player.y, player.w, player.h)) {
-
-      keyCount=1;
-    } else {
+    if(isHit(x, y, w, h, player.x, player.y, player.w, player.h)){
+        keyCount++;
+        return true;
+    }else{
       return false;
     }
   }
