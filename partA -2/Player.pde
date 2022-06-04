@@ -9,6 +9,7 @@ class Player {
 
   void update() {
     // Player image
+    //imageMode(CENTER);
     image(head, x, y);
 
     if (upPressed) {
@@ -36,25 +37,24 @@ class Player {
     // right side
     for (int i=0; i < desks.length; i++) {
       if (isHit(desks[i].x, desks[i].y, desks[i].w, desks[i].h, player.x, player.y, player.w, player.h)) {
-        if (x <= desks[i].x + desks[i].w) {
+        if (x>desks[i].x && y>desks[i].y&&y<desks[i].y+desks[i].h) {
           x = desks[i].x + desks[i].w;
-          player.y=y;
           leftPressed = false;
         }
 
-        if (x+w>= desks[i].x ) {
-          x= desks[i].x-x-w;
-          player.y=y;
+        if (x<desks[i].x && y>desks[i].y&&y<desks[i].y+desks[i].h) {
+          x= desks[i].x-w;
+         
           rightPressed = false;
         }
-        if (y<= desks[i].y + desks[i].h) {
+        if (y> desks[i].y && x>desks[i].x&&x<desks[i].x+desks[i].w) {
           y= desks[i].y + desks[i].h;
-          player.x=x;
+         
           upPressed = false;
         }
-        if (y+h >= desks[i].y ) {
+        if (y< desks[i].y && x>desks[i].x&&x<desks[i].x+desks[i].w ) {
           y = desks[i].y-h;
-          player.x=x;
+        
           downPressed = false;
         }
       }
@@ -66,7 +66,7 @@ class Player {
   Player() {
     x = PLAYER_INIT_X;
     y = PLAYER_INIT_Y;
-    speed = 10;
+    speed = 2;
   }
 
 }
