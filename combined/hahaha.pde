@@ -30,7 +30,7 @@ PFont font;
 
 //all
 final int START = 0, LEVEL1 = 1, LEVEL2 = 2, LEVEL3= 3, FAIL= 4;
-int levelState = 1;
+int levelState = 0;
 final int GAME_INIT_TIMER = 3600;
 final int GAME_INITP2_TIMER = 2400;
 int gameTimer = GAME_INIT_TIMER;
@@ -52,13 +52,12 @@ int headY=30;
 final int headW=60;//80
 final int headH=53;//73
 
-final int tableW=315;//375
-final int tableH=145;//205
-int tableX=180;//120
-int tableY=145;//85
-int tableX2=670;//610
-int tableY2=430;//370
-
+final int tableW=375;//375
+final int tableH=155;//205
+int tableX=140;//120
+int tableY=125;//85
+int tableX2=630;//610
+int tableY2=400;//370
 final int spaceW = 115;
 final int spaceH = 100;
 
@@ -78,30 +77,30 @@ float phoneH=74;
 float phoneX=745;
 float phoneY=90;
 
-float footprintW=146;
-float footprintH=121;
-float footprintX=1044;
-float footprintY=417;
+float footprintW=80;//146
+float footprintH=60;//121
+float footprintX=1090;//1004
+float footprintY=420;//417
 
-float hairW=80;
-float hairH=49;
-float hairX=410;
+float hairW=90;
+float hairH=20;
+float hairX=450;
 float hairY=500;
 
-float waterW=650;
-float waterH=123;
-float waterX=420;
-float waterY=590;
+float waterW=250;//650
+float waterH=61;//123
+float waterX=640;//420
+float waterY=580;//590
 
-float garbageCanW=300;
-float garbageCanH=140;
-float garbageCanX=1154;
-float garbageCanY=680;
+float garbageCanW=150;//300
+float garbageCanH=90;//140
+float garbageCanX=1204;//1154
+float garbageCanY=740;//680
 
-float glassBottleW=603;
-float glassBottleH=88;
-float glassBottleX=320;
-float glassBottleY=750;
+float glassBottleW=550;//603
+float glassBottleH=70;//88
+float glassBottleX=340;//320
+float glassBottleY=770;//750
 
 float cabinetW=60;
 float cabinetH=97;
@@ -110,7 +109,7 @@ float cabinetY=713;
 
 float blackboardW=207;
 float blackboardH=566;
-float blackboardX=1400;
+float blackboardX=1430;
 float blackboardY=140;
 
 float iconW=131;
@@ -358,7 +357,7 @@ void setup() {
   //img --- part3
   part3Bg = loadImage("img3/part3Background.png");
   title_3 = loadImage("img3/title_3.png");
-  partFail = loadImage("img3/partFail.png");
+  partFail = loadImage("imgAll/partFail.png");
   toolbar = loadImage("img3/part3Tool/toolbar.png");
   magnifierImg = loadImage("img3/part3Tool/magnifier.png");
   brushImg = loadImage("img3/part3Tool/brush.png");
@@ -511,16 +510,12 @@ void draw() {
 
       //keys
 
-      if (iconNum>5) {
-
-        if (mousePressed) {
-          if (iconX + iconW > mouseX
-            && iconX < mouseX
-            && iconY + iconH > mouseY
-            && iconY < mouseY) {
-
-            //gameState = PARTa_Choice;
-          }
+      if (iconNum>=5) {
+        if (mousePressed && (iconX + iconW > mouseX
+          && iconX < mouseX
+          && iconY + iconH > mouseY
+          && iconY < mouseY) ) {     
+            levelState = LEVEL1;       
         }
       }
 
@@ -1303,6 +1298,24 @@ void draw() {
   }
 }
 
+void keyReleased() {
+  if (key == CODED) {/*&&state==RUN*/
+    switch (keyCode) {
+    case UP:
+      upPressed = false;
+      break;
+    case DOWN:
+      downPressed = false;
+      break;
+    case LEFT:
+      leftPressed = false;
+      break;
+    case RIGHT:
+      rightPressed = false;
+      break;
+    }
+  }
+}
 
 boolean isMouseHit(float bx, float by, float bw, float bh) {
   return  mouseX > bx &&
@@ -1340,6 +1353,22 @@ String convertFrameToTimeString(int frames) {
 void keyPressed() {
   if (key==' ') {
     p.jump();
+  }
+    if (key == CODED) { /*&&state==RUN*/
+    switch (keyCode) {
+    case UP:
+      upPressed = true;
+      break;
+    case DOWN:
+      downPressed = true;
+      break;
+    case LEFT:
+      leftPressed = true;
+      break;
+    case RIGHT:
+      rightPressed = true;
+      break;
+    }
   }
 }
 
