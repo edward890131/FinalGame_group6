@@ -28,11 +28,10 @@ int tableX=180;//120
 int tableY=145;//85
 int tableX2=670;//610
 int tableY2=430;//370
-
 final int spaceW = 115;
 final int spaceH = 100;
 
-float speed = 10;
+float speed = 20;
 
 boolean upPressed = false;
 boolean downPressed = false;
@@ -49,30 +48,31 @@ float phoneH=74;
 float phoneX=745;
 float phoneY=90;
 
-float footprintW=146;
-float footprintH=121;
-float footprintX=1044;
-float footprintY=417;
+float footprintW=80;//146
+float footprintH=60;//121
+float footprintX=1090;//1004
+float footprintY=500;//417
 
 float hairW=80;
 float hairH=49;
 float hairX=410;
 float hairY=500;
 
-float waterW=650;
-float waterH=123;
-float waterX=420;
-float waterY=590;
+float waterW=250;//650
+float waterH=61;//123
+float waterX=620;//420
+float waterY=610;//590
 
-float garbageCanW=300;
-float garbageCanH=140;
-float garbageCanX=1154;
-float garbageCanY=680;
+float garbageCanW=150;//300
+float garbageCanH=90;//140
+float garbageCanX=1204;//1154
+float garbageCanY=650;//680
 
-float glassBottleW=603;
-float glassBottleH=88;
-float glassBottleX=320;
-float glassBottleY=750;
+float glassBottleW=550;//603
+float glassBottleH=70;//88
+float glassBottleX=340;//320
+float glassBottleY=770;//750
+
 
 float cabinetW=60;
 float cabinetH=97;
