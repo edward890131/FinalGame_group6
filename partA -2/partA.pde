@@ -259,72 +259,63 @@ void draw() {
 
 
     if (keys[0]. isAlive) {
-
-      if (keys[0].checkCollision(player)) {
+      if (keys[0].checkCollision(player)&&keys[0].keyCount==0) {
         iconNum++;
         keys[0].display();
         image(studentCard, 0, 0);
-       /* frame=2;*/
-/*try {
-          Thread.sleep(5000);
-        }
-        catch (InterruptedException e) {
-          e.printStackTrace();
-        }*/
       }
- 
     }
     if (keys[1]. isAlive) {
-      if (keys[1].checkCollision(player)) {
+      if (keys[1].checkCollision(player)&&keys[1].keyCount==0) {
         iconNum++;
         keys[1].display();
         image(phone, 0, 0);
       }
     }
     if (keys[2]. isAlive) {
-      if (keys[2].checkCollision(player)) {
+      if (keys[2].checkCollision(player)&&keys[2].keyCount==0) {
         iconNum++;
         keys[2].display();
         image(footprint, 0, 0);
       }
     }
     if (keys[3]. isAlive) {
-      if (keys[3].checkCollision(player)) {
+      if (keys[3].checkCollision(player)&&keys[3].keyCount==0) {
         iconNum++;
         keys[3].display();
         image(hair, 0, 0);
       }
     }
     if (keys[4]. isAlive) {
-      if (keys[4].checkCollision(player)) {
+      if (keys[4].checkCollision(player)&&keys[4].keyCount==0) {
         iconNum++;
         keys[4].display();
         image(water, 0, 0);
       }
     }
     if (keys[5]. isAlive) {
-      if (keys[5].checkCollision(player)) {
+      if (keys[5].checkCollision(player)&&keys[5].keyCount==0) {
         iconNum++;
         keys[5].display();
         image(garbageCan, 0, 0);
       }
     }
     if (keys[6]. isAlive) {
-      if (keys[6].checkCollision(player)) {
+      if (keys[6].checkCollision(player)&&keys[6].keyCount==0) {
         iconNum++;
         keys[6].display();
         image(glassBottle, 0, 0);
       }
     }
     if (keys[7]. isAlive) {
-      if (keys[7].checkCollision(player)) {
+      if (keys[7].checkCollision(player)&&keys[7].keyCount==0) {
         iconNum++;
         keys[7].display();
         image(mouse, 0, 0);
       }
     }
     if (keys[8]. isAlive) {
-      if (keys[8].checkCollision(player)) {
+      if (keys[8].checkCollision(player)&&keys[8].keyCount==0) {
         iconNum++;
         keys[8].display();
         image(blackboard, 0, 0);
