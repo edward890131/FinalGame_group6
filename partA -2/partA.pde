@@ -19,15 +19,16 @@ final int HEIGHT = 810;
 
 int headX=1300;
 int headY=30;
-final int headW=80;
-final int headH=73;
+final int headW=60;//80
+final int headH=53;//73
 
-final int tableW=375;
-final int tableH=205;
-int tableX=120;
-int tableY=85;
-int tableX2=610;
-int tableY2=390;
+final int tableW=315;//375
+final int tableH=145;//205
+int tableX=180;//120
+int tableY=145;//85
+int tableX2=670;//610
+int tableY2=430;//370
+
 final int spaceW = 115;
 final int spaceH = 100;
 
