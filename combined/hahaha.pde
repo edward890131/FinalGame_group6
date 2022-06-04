@@ -13,7 +13,7 @@ PImage Le_normal, She_hold, She_Introduce, She_normal, T_hold;
 PImage T_normal, T_Introduce, Teacher_hold, Teacher_Introduce, Teacher_normal, Turtle_hold,
   Turtle_normal, bg, retry_hold, retry_normal, error, close;
 PImage Dog_choose, Turtle_choose, Le_choose, Teacher_choose, T_choose, She_choose, isHe_hold, isHe_normal;
-PImage back_hold, back_normal,start_hold, start_normal ;
+PImage back_hold, back_normal, start_hold, start_normal ;
 
 //PImage part2
 PImage background, turtle1, turtle2, turtle3, pStraw, wig, title;
@@ -30,14 +30,14 @@ PFont font;
 
 //all
 final int START = 0, LEVEL1 = 1, LEVEL2 = 2, LEVEL3= 3, FAIL= 4;
-int levelState = 0;
+int levelState = 2;
 final int GAME_INIT_TIMER = 3600;
-final int GAME_INITP2_TIMER = 2400;
+final int GAME_INITP2_TIMER = 2400; //2400
 int gameTimer = GAME_INIT_TIMER;
 int playerHealth = 3;
 
 //part1-1
-int iconNum=0;
+int iconNum = 0;
 final int BTN_WIDTH=145, BTN_HEIGHT=76;
 final int START_BUTTON_X = 1240, START_BUTTON_Y = 700;
 final int PARTa_START=0, PARTa_TALK=1, PARTa_RUN=2, PARTa_OVER=3;
@@ -514,8 +514,8 @@ void draw() {
         if (mousePressed && (iconX + iconW > mouseX
           && iconX < mouseX
           && iconY + iconH > mouseY
-          && iconY < mouseY) ) {     
-            levelState = LEVEL1;       
+          && iconY < mouseY) ) {
+          levelState = LEVEL1;
         }
       }
 
@@ -1288,12 +1288,44 @@ void draw() {
 
     case GAME_PART3_WIN:
       image(gameWin, 0, 0);
+      if (isMouseHit(1100, 650, RESTART_BUTTON_WIDTH, RESTART_BUTTON_HEIGHT)) {
+        image(restartHover, 1100, 650);
+        if (mousePressed) {
+          levelState = 0;
+          gameTimer = GAME_INIT_TIMER;
+          playerHealth = 3;
+          iconNum = 0;
+          imgNum = 0;
+          for (int i=0; i<9; i++) {
+            keys[i].keyCount = 0;
+          }
+          mousePressed = false;
+        }
+      } else {
+        image(restartNormal, 1100, 650);
+      }
       break;
     }
     break;
 
   case FAIL:
     image(fail, 0, 0);
+    if (isMouseHit(1100, 650, RESTART_BUTTON_WIDTH, RESTART_BUTTON_HEIGHT)) {
+      image(restartHover, 1100, 650);
+      if (mousePressed) {
+        levelState = 0;
+        gameTimer = GAME_INIT_TIMER;
+        playerHealth = 3;
+        iconNum = 0;
+        imgNum = 0;
+        for (int i=0; i<9; i++) {
+          keys[i].keyCount = 0;
+        }
+        mousePressed = false;
+      }
+    } else {
+      image(restartNormal, 1100, 650);
+    }
     break;
   }
 }
@@ -1354,7 +1386,7 @@ void keyPressed() {
   if (key==' ') {
     p.jump();
   }
-    if (key == CODED) { /*&&state==RUN*/
+  if (key == CODED) { /*&&state==RUN*/
     switch (keyCode) {
     case UP:
       upPressed = true;
