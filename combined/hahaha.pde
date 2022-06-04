@@ -1,29 +1,28 @@
 //PImage all
-PImage fail;
+PImage fail, okNormal, okHover, restartNormal, restartHover, startNormal, startHover, life, gameWin, partFail;
 
 //PImage part1-1
-PImage start, success, confirmN, confirmH, startN, startH;
+PImage start;
 PImage classroom, blackboard, footprint, garbageCan, glassBottle, hair, mouse, phone, studentCard, water, head;
 PImage []part1;
 PImage [] icon;
 
 //PImage part1-2
 PImage Dog_hold, Dog_Introduce, Dog_normal, Turtle_Introduce, Le_hold, Le_Introduce;
-PImage Le_normal, OK_hold, OK_normal, She_hold, She_Introduce, She_normal, T_hold;
+PImage Le_normal, She_hold, She_Introduce, She_normal, T_hold;
 PImage T_normal, T_Introduce, Teacher_hold, Teacher_Introduce, Teacher_normal, Turtle_hold,
-  Turtle_normal, bg, retry_hold, retry_normal, error, start_hold, start_normal, close;
-PImage Dog_choose, Turtle_choose, Le_choose, Teacher_choose, T_choose, She_choose, isHe_hold, isHe_normal, part2;
-PImage back_hold, back_normal ;
+  Turtle_normal, bg, retry_hold, retry_normal, error, close;
+PImage Dog_choose, Turtle_choose, Le_choose, Teacher_choose, T_choose, She_choose, isHe_hold, isHe_normal;
+PImage back_hold, back_normal,start_hold, start_normal ;
 
 //PImage part2
 PImage background, turtle1, turtle2, turtle3, pStraw, wig, title;
 PImage tea1, tea3, tea2, lee, gogoro, player1, player2, player3, playerjump;
-PImage dia1, dia2, dia3, startnormal, starthover, oknormal, okhover, timer;
-PImage restart, restarth, lose;
+PImage dia1, dia2, dia3, timer;
 PImage []diaImages;
 
 //PImage part3
-PImage part3Bg, life, title_3, partFail, restartBtnNormal, restartBtnHover, gameWin;
+PImage part3Bg, title_3;
 PImage toolbar, magnifierImg, brushImg, clockImg, freezeImg;
 PImage [] strawImg = new PImage[6];
 PImage [] ask = new PImage[6];
@@ -237,36 +236,41 @@ void setup() {
   //background(255, 255, 255);
   frameRate(60);
 
+  okNormal = loadImage("imgAll/okNormal.png");
+  okHover = loadImage("imgAll/okHover.png");
+  startNormal=loadImage("imgAll/startNormal.png");
+  startHover=loadImage("imgAll/startHover.png");
+  life = loadImage("imgAll/life.png");
+  restartNormal = loadImage("imgAll/restartNormal.png");
+  restartHover = loadImage("imgAll/restartHover.png");
+  gameWin = loadImage("imgAll/gameWin.png");
+  fail = loadImage("imgAll/fail.png");
+
   //part1-1
-  start = loadImage("img/start.png");
-  success= loadImage("img/success.png");
-  lose= loadImage("img/lose.png");
-  confirmN=loadImage("img/confirmNormal.png");
-  confirmH=loadImage("img/confirmHold.png");
-  startN=loadImage("img/startNormal.png");
-  startH=loadImage("img/startHold.png");
-  classroom= loadImage("img/classroom.png");
-  blackboard= loadImage("img/blackboard.png");
-  footprint= loadImage("img/footprint.png");
-  garbageCan= loadImage("img/garbageCan.png");
-  glassBottle= loadImage("img/glassBottle.png");
-  hair= loadImage("img/hair.png");
-  mouse= loadImage("img/mouse.png");
-  phone= loadImage("img/phone.png");
-  studentCard= loadImage("img/studentCard.png");
-  water= loadImage("img/water.png");
-  head= loadImage("img/head.png");
+  start = loadImage("img1/start.png");
+  //lose= loadImage("img1/lose.png");
+  classroom= loadImage("img1/classroom.png");
+  blackboard= loadImage("img1/blackboard.png");
+  footprint= loadImage("img1/footprint.png");
+  garbageCan= loadImage("img1/garbageCan.png");
+  glassBottle= loadImage("img1/glassBottle.png");
+  hair= loadImage("img1/hair.png");
+  mouse= loadImage("img1/mouse.png");
+  phone= loadImage("img1/phone.png");
+  studentCard= loadImage("img1/studentCard.png");
+  water= loadImage("img1/water.png");
+  head= loadImage("img1/head.png");
 
   // load part1 image
   part1 = new PImage[6];
   for (int i=0; i<6; i++) {
-    part1[i] = loadImage("img/part1_0"+ i +".png");
+    part1[i] = loadImage("img1/part1_0"+ i +".png");
   }
 
   // load icon image
-  icon = new PImage[9];
-  for (int i=0; i<9; i++) {
-    icon[i] = loadImage("img/icon"+ i +".png");
+  icon = new PImage[10];
+  for (int i=0; i<10; i++) {
+    icon[i] = loadImage("img1/icon"+ i +".png");
   }
 
   // Initialize Player
@@ -291,97 +295,80 @@ void setup() {
   keys[8] = new Key(blackboardX, blackboardY, blackboardW, blackboardH);
 
   //part1-2
-  bg = loadImage("img/ground.png");
-  Dog_hold = loadImage("img/Dog_hold.png");
-  Dog_Introduce = loadImage("img/dog_Introduce.png");
-  Dog_normal = loadImage("img/Dog_normal.png");
-  Turtle_Introduce = loadImage("img/Turtle_Introduce.png");
-  Turtle_hold = loadImage("img/Turtle_hold.png");
-  Turtle_normal = loadImage("img/Turtle_noraml.png");
-  Le_hold = loadImage("img/Le_hold.png");
-  Le_Introduce = loadImage("img/Le_Introduce.png");
-  Le_normal = loadImage("img/Le_normal.png");
-  OK_hold = loadImage("img/OK_hold.png");
-  OK_normal = loadImage("img/OK_normal.png");
-  She_hold = loadImage("img/She_hold.png");
-  She_Introduce = loadImage("img/She_Introduce.png");
-  She_normal = loadImage("img/She_normal.png");
-  T_hold = loadImage("img/T_hold.png");
-  T_normal = loadImage("img/T_normal.png");
-  T_Introduce = loadImage("img/T_Introduce.png");
-  Teacher_hold = loadImage("img/Teacher_hold.png");
-  Teacher_Introduce = loadImage("img/Teacher_Interduce.png");
-  Teacher_normal = loadImage("img/Teacher_normal.png");
-  start_hold = loadImage("img/start_hold.png");
-  start_normal= loadImage("img/start_normal.png");
-  Dog_choose= loadImage("img/Dog_choose.png");
-  She_choose= loadImage("img/She_choose.png");
-  Teacher_choose= loadImage("img/Teacher_choose.png");
-  Turtle_choose= loadImage("img/Turtle_choose.png");
-  T_choose= loadImage("img/T_choose.png");
-  Le_choose= loadImage("img/Le_choose.png");
-  isHe_hold= loadImage("img/isHe_hold.png");
-  isHe_normal= loadImage("img/isHe_normal.png");
-  part2 = loadImage("img/part2.png");
-  error = loadImage("img/error.png");
-  retry_hold = loadImage("img/retry_hold.png");
-  retry_normal = loadImage("img/retry_normal.png");
-  close = loadImage("img/close.png");
-  back_hold = loadImage("img/back_hold.png");
-  back_normal = loadImage("img/back_normal.png");
+  bg = loadImage("img1/ground.png");
+  Dog_hold = loadImage("img1/Dog_hold.png");
+  Dog_Introduce = loadImage("img1/dog_Introduce.png");
+  Dog_normal = loadImage("img1/Dog_normal.png");
+  Turtle_Introduce = loadImage("img1/Turtle_Introduce.png");
+  Turtle_hold = loadImage("img1/Turtle_hold.png");
+  Turtle_normal = loadImage("img1/Turtle_noraml.png");
+  Le_hold = loadImage("img1/Le_hold.png");
+  Le_Introduce = loadImage("img1/Le_Introduce.png");
+  Le_normal = loadImage("img1/Le_normal.png");
+  She_hold = loadImage("img1/She_hold.png");
+  She_Introduce = loadImage("img1/She_Introduce.png");
+  She_normal = loadImage("img1/She_normal.png");
+  T_hold = loadImage("img1/T_hold.png");
+  T_normal = loadImage("img1/T_normal.png");
+  T_Introduce = loadImage("img1/T_Introduce.png");
+  Teacher_hold = loadImage("img1/Teacher_hold.png");
+  Teacher_Introduce = loadImage("img1/Teacher_Interduce.png");
+  Teacher_normal = loadImage("img1/Teacher_normal.png");
+  Dog_choose= loadImage("img1/Dog_choose.png");
+  She_choose= loadImage("img1/She_choose.png");
+  Teacher_choose= loadImage("img1/Teacher_choose.png");
+  Turtle_choose= loadImage("img1/Turtle_choose.png");
+  T_choose= loadImage("img1/T_choose.png");
+  Le_choose= loadImage("img1/Le_choose.png");
+  isHe_hold= loadImage("img1/isHe_hold.png");
+  isHe_normal= loadImage("img1/isHe_normal.png");
+  error = loadImage("img1/error.png");
+  retry_hold = loadImage("img1/retry_hold.png");
+  retry_normal = loadImage("img1/retry_normal.png");
+  close = loadImage("img1/close.png");
+  back_hold = loadImage("img1/back_hold.png");
+  back_normal = loadImage("img1/back_normal.png");
+  start_hold = loadImage("img1/start_hold.png");
+  start_normal = loadImage("img1/start_normal.png");
 
   //img --- part2
-  background = loadImage("part2/background.png");
-  player1 = loadImage("part2/player1.png");
-  player2 = loadImage("part2/player2.png");
-  player3 = loadImage("part2/player3.png");
-  playerjump = loadImage("part2/playerjump.png");
-  turtle1 = loadImage("part2/turtle1.png");
-  turtle2 = loadImage("part2/turtle2.png");
-  turtle3 = loadImage("part2/turtle3.png");
-  wig = loadImage("part2/wig.png");
-  pStraw = loadImage("part2/pStraw.png");
-  lee= loadImage("part2/lee.png");
-  title = loadImage("part2/title.png");
-  life = loadImage("part2/life.png");
-  tea1 = loadImage("part2/tea1.png");
-  tea3 = loadImage("part2/tea3.png");
-  tea2 = loadImage("part2/tea2.png");
-  gogoro = loadImage("part2/gogoro.png");
-  dia1 = loadImage("part2/dia1.png");
-  dia2 = loadImage("part2/dia2.png");
-  dia3 = loadImage("part2/dia3.png");
-  startnormal = loadImage("part2/startnormal.png");
-  starthover = loadImage("part2/starthover.png");
-  oknormal = loadImage("part2/oknormal.png");
-  okhover = loadImage("part2/okhover.png");
-  timer = loadImage("part2/timer.png");
-  restart = loadImage("part2/restart.png");
-  restarth = loadImage("part2/restarth.png");
-  lose = loadImage("part2/lose.png");
-  fail = loadImage("img/fail.png");
+  background = loadImage("img2/background.png");
+  player1 = loadImage("img2/player1.png");
+  player2 = loadImage("img2/player2.png");
+  player3 = loadImage("img2/player3.png");
+  playerjump = loadImage("img2/playerjump.png");
+  turtle1 = loadImage("img2/turtle1.png");
+  turtle2 = loadImage("img2/turtle2.png");
+  turtle3 = loadImage("img2/turtle3.png");
+  wig = loadImage("img2/wig.png");
+  pStraw = loadImage("img2/pStraw.png");
+  lee= loadImage("img2/lee.png");
+  title = loadImage("img2/title.png");
+  tea1 = loadImage("img2/tea1.png");
+  tea3 = loadImage("img2/tea3.png");
+  tea2 = loadImage("img2/tea2.png");
+  gogoro = loadImage("img2/gogoro.png");
+  dia1 = loadImage("img2/dia1.png");
+  dia2 = loadImage("img2/dia2.png");
+  dia3 = loadImage("img2/dia3.png");
+  timer = loadImage("img2/timer.png");
 
   initGamePart2();
 
   //img --- part3
-  part3Bg = loadImage("img/part3Background.png");
-  life = loadImage("img/life.png");
-  title_3 = loadImage("img/title_3.png");
-  partFail = loadImage("img/partFail.png");
-  restartBtnNormal = loadImage("img/restartBtnNormal.png");
-  restartBtnHover = loadImage("img/restartBtnHover.png");
-  gameWin = loadImage("img/gameWin.png");
-
-  toolbar = loadImage("img/part3Tool/toolbar.png");
-  magnifierImg = loadImage("img/part3Tool/magnifier.png");
-  brushImg = loadImage("img/part3Tool/brush.png");
-  clockImg = loadImage("img/part3Tool/clock.png");
-  freezeImg = loadImage("img/part3Tool/freeze.png");
+  part3Bg = loadImage("img3/part3Background.png");
+  title_3 = loadImage("img3/title_3.png");
+  partFail = loadImage("img3/partFail.png");
+  toolbar = loadImage("img3/part3Tool/toolbar.png");
+  magnifierImg = loadImage("img3/part3Tool/magnifier.png");
+  brushImg = loadImage("img3/part3Tool/brush.png");
+  clockImg = loadImage("img3/part3Tool/clock.png");
+  freezeImg = loadImage("img3/part3Tool/freeze.png");
   for (int i=0; i<strawImg.length; i++) {
-    strawImg[i] = loadImage("img/part3Straws/straw" + i +".png");
+    strawImg[i] = loadImage("img3/part3Straws/straw" + i +".png");
   }
   for (int i=0; i<ask.length; i++) {
-    ask[i] = loadImage("img/part3Ask/ask" + i +".png");
+    ask[i] = loadImage("img3/part3Ask/ask" + i +".png");
   }
 
   font = createFont("font/font.ttf", 100);
@@ -430,7 +417,7 @@ void initGamePart2() {
 
   diaImages = new PImage[8];
   for (int i = 0; i < diaImages.length; i++) {
-    diaImages[i] = loadImage("part2/p" + i + ".png");
+    diaImages[i] = loadImage("img2/p" + i + ".png");
   }
 }
 
@@ -469,14 +456,14 @@ void draw() {
         && START_BUTTON_Y + BTN_HEIGHT > mouseY
         && START_BUTTON_Y < mouseY) {
 
-        image(startH, START_BUTTON_X, START_BUTTON_Y);
+        image(startHover, START_BUTTON_X, START_BUTTON_Y);
         if (mousePressed) {
 
           gameState = PARTa_TALK;
           mousePressed = false;
         }
       } else {
-        image(startN, START_BUTTON_X, START_BUTTON_Y);
+        image(startNormal, START_BUTTON_X, START_BUTTON_Y);
       }
 
       break;
@@ -489,7 +476,7 @@ void draw() {
         && START_BUTTON_Y + BTN_HEIGHT > mouseY
         && START_BUTTON_Y < mouseY) {
 
-        image(confirmH, START_BUTTON_X, START_BUTTON_Y);
+        image(okHover, START_BUTTON_X, START_BUTTON_Y);
         if (mousePressed) {
 
           nextImg();
@@ -502,7 +489,7 @@ void draw() {
           }
         }
       } else {
-        image(confirmN, START_BUTTON_X, START_BUTTON_Y);
+        image(okNormal, START_BUTTON_X, START_BUTTON_Y);
       }
 
       break;
@@ -949,10 +936,10 @@ void draw() {
     case GAME_PART2_START: // Start Screen
       if (dia==1) {
         image(dia1, 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             dia=2;
             mousePressed = false;
@@ -962,10 +949,10 @@ void draw() {
 
       if (dia==2) {
         image(dia2, 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             dia=3;
             mousePressed = false;
@@ -975,17 +962,17 @@ void draw() {
 
       if (dia==3) {
         image(dia3, 0, 0);
-        image(startnormal, BUTTON_X, BUTTON_Y);
+        image(startNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(starthover, BUTTON_X, BUTTON_Y);
+          image(startHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             part2gameState = GAME_PART2_RUN;
             mousePressed = false;
           }
         } else {
 
-          image(startnormal, BUTTON_X, BUTTON_Y);
+          image(startNormal, BUTTON_X, BUTTON_Y);
         }
       }
       break;
@@ -1062,10 +1049,10 @@ void draw() {
       case DIA_A:
 
         image(diaImages[0], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_B;
             mousePressed = false;
@@ -1076,10 +1063,10 @@ void draw() {
       case DIA_B:
 
         image(diaImages[1], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_C;
             mousePressed = false;
@@ -1090,10 +1077,10 @@ void draw() {
       case DIA_C:
 
         image(diaImages[2], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_D;
             mousePressed = false;
@@ -1103,10 +1090,10 @@ void draw() {
       case DIA_D:
 
         image(diaImages[3], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_E;
             mousePressed = false;
@@ -1116,10 +1103,10 @@ void draw() {
       case DIA_E:
 
         image(diaImages[4], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_F;
             mousePressed = false;
@@ -1129,10 +1116,10 @@ void draw() {
       case DIA_F:
 
         image(diaImages[5], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_G;
             mousePressed = false;
@@ -1142,10 +1129,10 @@ void draw() {
       case DIA_G:
 
         image(diaImages[6], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             winState=DIA_H;
             mousePressed = false;
@@ -1155,10 +1142,10 @@ void draw() {
       case DIA_H:
 
         image(diaImages[7], 0, 0);
-        image(oknormal, BUTTON_X, BUTTON_Y);
+        image(okNormal, BUTTON_X, BUTTON_Y);
         if (isMouseHit(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)) {
 
-          image(okhover, BUTTON_X, BUTTON_Y);
+          image(okHover, BUTTON_X, BUTTON_Y);
           if (mousePressed) {
             levelState= LEVEL3;
             initGamePart3();
@@ -1172,10 +1159,10 @@ void draw() {
 
     case GAME_PART2_OVER:
 
-      image(lose, 0, 0);
-      image(restart, 500, 440);
+      image(partFail, 0, 0);
+      image(restartNormal, 500, 440);
       if (isMouseHit(500, 440, 253, 88)) {
-        image(restarth, 500, 440);
+        image(restartHover, 500, 440);
         if (mousePressed) {
           part2gameState=GAME_PART2_RUN;
           mousePressed = false;
@@ -1292,7 +1279,7 @@ void draw() {
       //playerHealth--;
       image(partFail, 0, 0);
       if (isMouseHit(RESTART_BUTTON_X, RESTART_BUTTON_Y, RESTART_BUTTON_WIDTH, RESTART_BUTTON_HEIGHT)) {
-        image(restartBtnHover, 500, 440);
+        image(restartHover, 500, 440);
         if (mousePressed) {
           part3_gameState = GAME_PART3_RUN;
           playerHealth--;
@@ -1300,7 +1287,7 @@ void draw() {
           initGamePart3();
         }
       } else {
-        image(restartBtnNormal, 500, 440);
+        image(restartNormal, 500, 440);
       }
       break;
 
