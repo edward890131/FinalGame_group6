@@ -30,7 +30,7 @@ PFont font;
 
 //all
 final int START = 0, LEVEL1 = 1, LEVEL2 = 2, LEVEL3= 3, FAIL= 4;
-int levelState = 2;
+int levelState = 0;
 final int GAME_INIT_TIMER = 3600;
 final int GAME_INITP2_TIMER = 2400; //2400
 int gameTimer = GAME_INIT_TIMER;
